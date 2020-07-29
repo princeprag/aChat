@@ -1,0 +1,133 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+body{
+    background-image: linear-gradient(rgb(245, 219, 219),rgb(104, 43, 18));
+    height: 100vh; 
+    
+}
+.logo{
+    display: block;
+    margin: auto;
+    /* border: 2px ridge black; */
+}
+.navbar h1{
+    text-align: center;
+    font-family: cursive;
+    color: #b622a2d9;
+    padding-bottom: 10px;
+}
+.navbar{
+    background-color: rgb(225, 238, 234);
+    border-radius: 10px 10px 0px 0px;
+    max-width: 600px;
+    margin: 0px 13px;
+    margin: auto;
+    box-shadow: 0px 0px 9px 5px currentColor;
+    margin-top: 10px;
+}
+.message-container{
+    max-width: 600px;
+    background-color: brown;
+    margin: 0px 13px;
+    margin: auto;
+    /* border-radius:  0px 0px 10px 10px ; */
+    height: 50vh;
+    overflow-y: auto;
+    box-shadow: 0px 8px 9px 5px currentColor
+}
+.message{
+     background-color: burlywood;
+     width: 40%;
+     padding: 5px;
+     margin: 10px 5px;
+     border: 2px ridge rgb(165, 116, 211);
+     border-radius: 8px;
+     font-family:cursive;
+     
+}
+.noclass{
+    margin: auto;
+    /* background: wheat; */
+    text-align: center;
+    padding-bottom: 12px;
+    font-weight: bolder;
+    font-family: cursive;
+}
+.left{
+     float: left;
+     clear: both; /* make sure that no element will present of right caption-side: ; */
+}
+.right{
+    float: right;
+    clear: both;/* make sure that no element will present of right caption-side: ; */
+}
+.send-box{
+    max-width: 600px;
+    background-color: burlywood;
+    margin: auto;
+    /* height: 11vh; */
+    border-radius:  0px 0px 10px 10px ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    box-shadow: 0px 7px 9px 5px currentColor;
+    margin-bottom: 20px;
+}
+.send-box details{
+    padding: 10px;
+    font-family: cursive;
+}
+.send-box summary{
+    outline: none;
+    display: block;
+    margin: auto;
+    border: 2px solid rgb(146, 72, 72);
+    padding: 2px;
+    background-color: rgb(195, 221, 182);
+    border-radius: 10px;
+}
+#send-form{
+    padding-top: 10px;
+    width: 80%;
+}
+
+#messageInp{
+    width: 80%;
+    padding: 3px 0px;
+    margin: 6px 0px;
+    font-size: 17px;
+    font-family: cursive;
+    border: 2px ridge rgb(168, 168, 228);
+    border-radius: 10px;
+    outline: none;
+}
+.btn{
+    width : 16%;
+    cursor: pointer;
+    outline: none;
+    border: 2px ridge brown;
+    padding: 2px 5px;
+    font-size: 14px;
+    border-radius: 10px;
+    font-family:cursive;
+}
+#file{
+    border: 2px ridge red;
+    padding: 3px;
+    border-radius: 13px;
+}
+h3{
+    display: inline-block;
+    padding-left: 3px;
+    font-family: cursive;
+    font-weight: bolder;
+    color: black;
+}
+.label_for_input{
+    display: block;
+    margin: auto;
+    text-align: center;
+}
