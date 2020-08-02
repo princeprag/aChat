@@ -6,35 +6,43 @@ const form = document.getElementById('send-form');
 const messageInput = document.getElementById('messageInp');
 const messageContainer = document.querySelector(".message-container");
 const navbar = document.querySelector(".navbar");
-const audio = new Audio('notification.mp3')
+const navbar_time = document.querySelector('.navbar h3 .time');
+const navbar_room = document.querySelector('.navbar h1 .room');
+const navbar_name = document.querySelector('.navbar h1 .name');
+const names = document.querySelector('.navbar .all_members h5');
+const audio = new Audio('mp3/notification.mp3')
 
 // append function which is being used in user-joined section it will append all the message into message section
 const append = (message, position)=>{
     //time
     var time = new Date();
     time = time.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
-    if(position!="noclass") message = `<span style = "color:#275b00;">${time}</span> `+ message;
-    //
-    const messageElement = document.createElement('div');
-    messageElement.innerHTML = message;
-    if(position!="noclass") messageElement.classList.add('message'); // set class = message
-    messageElement.classList.add(position); // set class = left or right
-    if(position!="noclass") messageContainer.append(messageElement);
-    else{
-        messageElement.innerHTML+=`<h4>You have joined this app at <span style = "color:red;">${time}</span> </h4>`
-          navbar.append(messageElement);
+    if(position!="noclass"){
+        message = `<span style = "color:#275b00;">${time}</span> `+ message;
+        const messageElement = document.createElement('div');
+        messageElement.innerHTML = message;
+        messageElement.classList.add('message');
+        messageElement.classList.add(position);
+        messageContainer.append(messageElement);
+    }  else{
+        navbar_time.innerHTML=time;
+        navbar_room.innerHTML=message.room;
+        navbar_name.innerHTML=message.name;
     }
     if(position=="left")
         audio.play();
+    // scroll down
+    messageContainer.scrollTop = messageContainer.scrollHeight;
 }
 
 // whenever form get submited send the message to server so that all other user can get the message
 form.addEventListener('submit',(e)=>{
     e.preventDefault();//  event.preventDefault(); can also be used
-    // is used to prevent autorefresh
+                       //  is used to prevent autorefresh
     const message = messageInput.value;
     append(`You: ${message} `,'right');
     socket.emit('send', message);
+    
     messageInput.value= '';
 })
 
@@ -52,12 +60,13 @@ socket.on('user-joined', name =>{
     append(`${name} joined the aChat`, 'left');
 });
 socket.on('welcome', data =>{
-    append(`<h1>Welcome <span style = "color: #171cb0f2;">${data.name} </span> to <span style = "color: #fc0000;">aChat app</span>.<br>you are currently in <span style = "color: green;">${data.room} </span> room.</h1>`,"noclass");
+    append(data,"noclass");
 })
 // if server sends a message with receive variable, receive it.
 socket.on('receive', data =>{
     //console.log("AAAAAAAAAAA");
     append(`${data.name}: ${data.message}`, 'left');
+   
 });
 
 // if someone left from aChat, let all know.
@@ -67,4 +76,9 @@ socket.on('left', name =>{
    // audio.play();
 });
 
-// time 
+// name of all users
+socket.on('all_name', (data)=>{
+    
+    names.innerHTML = data.All_names;
+    console.log(data.All_names);
+});
